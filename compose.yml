@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  react-editor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./.pnpm-store:/app/.pnpm-store
+    environment:
+      - NODE_ENV=development
+    command: pnpm dev --host
+
+volumes:
+  pnpm_store:
